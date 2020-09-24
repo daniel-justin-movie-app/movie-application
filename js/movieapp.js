@@ -7,7 +7,8 @@ let params = {};
 
 let app = document.getElementById("append");
 
-let kevinBaconId = 4724;
+const KEVIN_BACON_ID = 4724;
+
 
 const getActor = () => {
     console.log('hello');
@@ -55,6 +56,7 @@ const addActor = (actor)=>{
     app.innerHTML += `
     <section class="actor" data-id="${actor.id}">
         <h3>${actor.name}</h3>
+        <p>was in ...</p>
     </section>`;
     getMoviesForActor(actor.id).then(movies => {
         app.innerHTML += buildSelectMovie(movies);
@@ -68,8 +70,16 @@ const addMovie = (movie) =>{
     app.innerHTML += `
     <section class="movie" data-id="${movie.id}">
         <h3>${movie.title}</h3>
+        <p>with ...</p>
     </section>`;
-    getActorsForMovie(movie.id).then(console.log);
+    getActorsForMovie(movie.id).then(actors => {
+        console.log(actors);
+        app.innerHTML += buildSelectActor(actors);
+        document.getElementById('confirm').addEventListener('click', () => {
+            const actorId = document.querySelector('.actors-list').value;
+            console.log(actorId);
+        })
+    });
 }
 
 
@@ -101,5 +111,16 @@ const buildSelectMovie = (movies) => {
     return html;
 }
 
-document.getElementById("getActor").addEventListener("click", getActor);
+const buildSelectActor = (actors) => {
+    let html = actors.reduce((selectHtml, actor) => {
+        return selectHtml + `<option value="${actor.id}">${actor.name}</option>`
+    }, '<select class="actor-list">') + '</select>';
+    html += `<button id="confirm">Confirm Movie</button>`;
+    return html;
+}
+
+// kick things off with KB
+getActor(KEVIN_BACON_ID);
+
+// document.getElementById("getActor").addEventListener("click", getActor);
 document.getElementById("getMovie").addEventListener("click", getMovie);
