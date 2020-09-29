@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movies Project</title>
+    <title>Start at an Actor</title>
     <style>
         .hidden {
             display: none;
@@ -11,18 +11,18 @@
 </head>
 <body>
 
-<h1>Movies Project</h1>
-<p>This is a project by Justin Reich and Daniel Fryar.</p>
-<p>Pick an actor. Start with Kevin Bacon. See how many movies it takes you.</p>
 <main id="app">
-<!--    <input type="text" id="movieActor" value="4724"/>-->
+    <label for="movieActor">What actor do you want to start with?</label>
+    <input type="text" id="movieActor" value="Katharine Hepburn"/>
+    <button id="firstActorBtn">Select Actor</button>
     <div id="append"></div>
     <button id="getActorBtn" class="hidden">Select Actor</button>
-    <button id="getMovieBtn">Select Movie</button>
+    <button id="getMovieBtn" class="hidden">Select Movie</button>
 
 </main>
 <script src="js/keys.js"></script>
 <script src="js/movieapp.js"></script>
-<script src="js/fromKevinBacon.js"></script>
+<script src="js/fromActor.js"></script>
+
 </body>
 </html>
